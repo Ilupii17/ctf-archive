@@ -28,3 +28,8 @@ maka kita bisa konversikan saja menggunakan chat gpt wkwk, untuk mendapatkan lin
 langsung saja cari di gmaps 
 
 ![Preview](images/5.png)
+
+maka langsung saja tulis format flagnya seperti di deskripsi
+`INTECHFEST{JimbaranBayBeachResort&Spa}`
+
+![Preview](images/6.png)
