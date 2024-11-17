@@ -14,3 +14,7 @@ dikarenakan ini challenge osint maka langkah pertama yang kita harus cek yaitu `
 metadata ini biasa terekam jika file gambar ini masih asli dari foto (tanpa harus di kirim lewat manapun, proses pengiriman biasanya menghapus metadata)
 
 ![Preview](images/2.png)
+
+sekarang kita cek hasil metadatanya sampai bawah hingga aku menemukan petunjuk baru di metadata tersebut
+
+![Preview](images/3.png)
