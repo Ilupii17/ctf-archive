@@ -1,1 +1,1 @@
-![File Check](/images/1.png)
+![File Check](images/1.png)
