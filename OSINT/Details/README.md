@@ -4,8 +4,7 @@
 ---
 
 ## How To Solve ?
-
-- Yang pertama kita di berikan sebuah file gambar seperti di bawah ini
+Yang pertama kita di berikan sebuah file gambar seperti di bawah ini
 ![File Check](images/1.png)
 
 gambarnya tidak menujukan petunjuk apapun
