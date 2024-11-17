@@ -10,3 +10,7 @@ Yang pertama kita di berikan sebuah file gambar seperti di bawah ini
 
 gambarnya tidak menujukan petunjuk apapun
 
+dikarenakan ini challenge osint maka langkah pertama yang kita harus cek yaitu `metadata` menggunakan tools `exiftools`
+metadata ini biasa terekam jika file gambar ini masih asli dari foto (tanpa harus di kirim lewat manapun, proses pengiriman biasanya menghapus metadata)
+
+![Preview](images/2.png)
