@@ -18,3 +18,10 @@ metadata ini biasa terekam jika file gambar ini masih asli dari foto (tanpa haru
 sekarang kita cek hasil metadatanya sampai bawah hingga aku menemukan petunjuk baru di metadata tersebut
 
 ![Preview](images/3.png)
+
+kita bisa mendapatkan gps latitude dan Longitude ketika foto tersebut di potret dalam keadaan gps on
+
+maka kita bisa konversikan saja menggunakan chat gpt wkwk, untuk mendapatkan link gmaps nya
+
+![Preview](images/4.png)
+
