@@ -25,3 +25,6 @@ maka kita bisa konversikan saja menggunakan chat gpt wkwk, untuk mendapatkan lin
 
 ![Preview](images/4.png)
 
+langsung saja cari di gmaps 
+
+![Preview](images/5.png)
