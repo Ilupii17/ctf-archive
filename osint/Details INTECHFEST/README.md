@@ -9,12 +9,10 @@
 
 ---
 
-## 🛠️ Langkah-Langkah Penyelesaian
-### 1. **Analisis Awal**
-- [Jelaskan langkah pertama yang dilakukan, seperti menganalisis file, membaca kode sumber, atau memeriksa output dari program.]
-- Tools yang digunakan:  
-  - [Tool 1]  
-  - [Tool 2]  
+## 🛠️ Penyelesaian
+- kita di berikan sebuah file gambar seperti di bawah ini
+  ![File Check](/)
+ 
 
 Contoh:
 ```bash
