@@ -52,5 +52,9 @@ p.sendline(payload)
 p.interactive()
 ```
 
+ketika di jalankan akan seperti ini
 
+![Preview](images/4.png)
+
+flag : `COMPFEST16{still_easy_ret2win_right?_a4e27d3beb}`
 
