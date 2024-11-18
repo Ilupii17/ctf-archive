@@ -18,3 +18,9 @@ di dalam binary dan file nya 64 bit, maka dari itu kita bisa dengan mudah mengov
 langkah selanjutnya kita analisis file nya menggunakan gdb seperti ini
 
 ![Preview](images/2.png)
+
+di lihat dari function yang ada, maka kita bisa simpulkan ini adalah chall ret2win
+[link ini](https://book.hacktricks.xyz/binary-exploitation/stack-overflow/ret2win)
+
+kita coba analisis fungsi vuln nya
+![Preview](images/3.png)
