@@ -1,4 +1,4 @@
-# [500 pts] aladin
+# aladin
 ### Category: Binary Exploitation
 
 **Deskripsi:**
@@ -6,3 +6,4 @@
 >
 >Author: nabilmuafa
 
+## Penyelesaian
