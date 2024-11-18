@@ -7,3 +7,5 @@
 >Author: nabilmuafa
 
 ## Penyelesaian
+Pada Chall ini kita di berikan sebuah file binary, dikarenakan ini chall pwn/binary exploitation maka hal yang pertama kita lakukan yaitu 
+melakukan checksec
