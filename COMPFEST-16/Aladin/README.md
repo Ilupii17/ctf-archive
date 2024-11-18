@@ -22,12 +22,13 @@ langkah selanjutnya kita analisis file nya menggunakan gdb seperti ini
 di lihat dari function yang ada, maka kita bisa simpulkan ini adalah chall ret2win
 [link ini](https://book.hacktricks.xyz/binary-exploitation/stack-overflow/ret2win)
 
-atau secara singkatnya cari berapa buffer yang di butuhkan untuk menimpa return address,, 
-karena buffer nya 32 maka 32+8 byte rbp yaitu 40 atau bisa kalian crashing programnya dan mencari offset rsp
-
 kita coba analisis fungsi vuln nya
 
 ![Preview](images/3.png)
 
-set 
+set rsp nya 0x20 atau 32 + save rbp 8 byte = 40, kita bisa menimpa buffer untuk menuju return address dan mengubah return tersebut menjadi return ke win.
+kalau masih kurang yakin kita bisa menggunakan gdb untuk mencari letak offset
+karena buffer nya 32 maka 32+8 byte rbp yaitu 40 atau bisa kalian crashing programnya dan mencari offset rsp
+
+![Preview](images/4.png)
 
