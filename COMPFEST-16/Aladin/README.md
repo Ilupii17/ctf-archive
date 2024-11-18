@@ -23,4 +23,7 @@ di lihat dari function yang ada, maka kita bisa simpulkan ini adalah chall ret2w
 [link ini](https://book.hacktricks.xyz/binary-exploitation/stack-overflow/ret2win)
 
 kita coba analisis fungsi vuln nya
+
 ![Preview](images/3.png)
+
+
