@@ -11,7 +11,22 @@
 # Analisis
 Pada challenge ini kita di berikan sebuah program python yang sudah di menjadi assembly(python) namun file yang di berikan berbentuk
 .txt, bukan .pyc jadi akan lebih sulit untuk di compile ulang
-pada challenge ini kita juga di haruskan untuk mengetahui isi password dari hasil assmbly tersebut,
+pada challenge ini kita juga di haruskan untuk mengetahui isi password dari hasil assmbly tersebut
+
+dan saya coba masuk ke server soalnya
+```
+nc challenge.ctf.compfest.id 20011
+```
+
+Output:
+```
+Enter THE password:
+```
+
+kita di suruh untuk memasukan password?
+pas kita masukan huruf contohnya "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
+keluar output "Password is too long!".
+oke lanjut saja
 
 **chall:**
 ```python
@@ -266,4 +281,47 @@ yang kedua ada pengecekan apakah input yang di masukan ada afanumerik?
 12 CALL                     1
 22 STORE_NAME               1 (pw)
 ```
+
+yang ketiga yaitu mengecek apakah password yang di masukan lebih dari 9
+
+```
+110 LOAD_NAME                1 (pw)
+198 LOAD_CONST               2 (9)
+128 COMPARE_OP               4 (>)
+134 POP_JUMP_FORWARD_IF_FALSE    21 (to 178)
+```
+
+yang ke empat yaitu mengubah inputan menjadi list integer
+```
+250 BUILD_LIST               0
+252 LOAD_CONST               5 ((0, 0, 0, 0, 0, 0, 0, 0, 0))
+254 LIST_EXTEND              1
+256 STORE_NAME               6 (x)
+```
+
+yang ke lima yaitu mengubah karakter yang di masukan menjadi ASCII(ord)
+
+```
+286 LOAD_NAME                9 (ord)
+288 LOAD_NAME                1 (pw)
+318 LOAD_NAME                6 (x)
+338 LOAD_NAME                8 (i)
+344 LOAD_CONST               6 (1)
+```
+
+dan yang terakhir ada beberapa logika yang di tambahkan untuk mengacak setiap list ascii dari 1 sampai 9
+
+```
+1. x[7] + 69 == 120
+2. x[3] ^ 1337 == 1355
+3. x[0] // 22 == 5
+4. x[4] - 16 == 35
+5. (x[8] << 3) == 832
+6. x[1] ** 2 == 9409
+7. x[6] * 7 == 693
+8. ~x[2] == -110
+9. x[5] == 107
+```
+
+
 
