@@ -379,7 +379,7 @@ coba()
 ```
 dan muncul output Password nya = h3ck3rman
 
-
+![Preview](images/1.png)
 
 
 
