@@ -309,6 +309,25 @@ yang ke lima yaitu mengubah karakter yang di masukan menjadi ASCII(ord)
 344 LOAD_CONST               6 (1)
 ```
 
+oh iya ini juga ada sebuah looping yang di mana input itu di isi terbalik nantinya
+
+```
+302 PRECALL                  1
+306 CALL                     1
+316 LOAD_NAME                6 (x)
+318 PUSH_NULL
+320 LOAD_NAME                5 (len)
+322 LOAD_NAME                6 (x)
+324 PRECALL                  1
+328 CALL                     1
+338 LOAD_NAME                8 (i)
+340 BINARY_OP               10 (-)
+344 LOAD_CONST               6 (1)
+346 BINARY_OP               10 (-)
+
+
+```
+
 dan yang terakhir ada beberapa logika yang di tambahkan untuk mengacak setiap list ascii dari 1 sampai 9
 
 ```
@@ -322,6 +341,46 @@ dan yang terakhir ada beberapa logika yang di tambahkan untuk mengacak setiap li
 8. ~x[2] == -110
 9. x[5] == 107
 ```
+
+jadi kita bisa buat kebalikannya untuk mengetahui isi nya (matematika sederhana)
+
+```
+x[7] = 120-69
+x[3] = 1337 ^ 1355
+x[0] = 5 * 22
+x[4] = 35 + 16
+x[8] = 832 >> 3
+x[1] = int(9409 ** 0.5)
+x[6] = 693 // 7
+x[2] = ~(-110)
+x[5] = 107
+```
+
+sehingga kita bisa buat solver nya seperti ini
+```
+def coba():
+    x = [0] * 9 #inisialisasi buat list int nya
+
+    #logic
+    x[7] = 120 - 69
+    x[3] = 1337 ^ 1355
+    x[0] = 5 * 22
+    x[4] = 35 + 16
+    x[8] = 832 >> 3
+    x[1] = int(9409 ** 0.5)
+    x[6] = 693 // 7
+    x[2] = ~(-110)
+    x[5] = 107
+
+    pw = ''.join(chr(i) for i in x) #print hasil logic
+    print('Password nya =',pw[::-1]) #reverse
+
+coba()
+```
+dan muncul output Password nya = h3ck3rman
+
+
+
 
 
 
