@@ -9,7 +9,8 @@
 >nc challenges.ctf.compfest.id 20011
 
 # Analisis
-Pada challenge ini kita di berikan sebuah program python yang sudah di menjadi assembly(python)
+Pada challenge ini kita di berikan sebuah program python yang sudah di menjadi assembly(python) namun file yang di berikan berbentuk
+.txt, bukan .pyc jadi akan lebih sulit untuk di compile ulang
 pada challenge ini kita juga di haruskan untuk mengetahui isi password dari hasil assmbly tersebut,
 
 **chall:**
@@ -244,3 +245,25 @@ pada challenge ini kita juga di haruskan untuk mengetahui isi password dari hasi
 ```
 
 itu adalah full challenge nya
+
+## Solusi 
+saya kompile menggunakan chatgpt dlu, tapi jangan langsung percaya sama chatgpt, analisis ulang dlu
+
+yang pertama ada input password
+
+```
+4 LOAD_NAME                0 (input)
+6 LOAD_CONST               0 ('Enter THE password: ')
+12 CALL                     1
+22 STORE_NAME               1 (pw)
+```
+
+yang kedua ada pengecekan apakah input yang di masukan ada afanumerik?
+
+```
+4 LOAD_NAME                0 (input)
+6 LOAD_CONST               0 ('Enter THE password: ')
+12 CALL                     1
+22 STORE_NAME               1 (pw)
+```
+
