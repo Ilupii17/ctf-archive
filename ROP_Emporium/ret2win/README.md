@@ -8,3 +8,7 @@ ret2win
 https://ir0nstone.gitbook.io/notes/binexp/stack/ret2win
 
 ## Analisis
+kita check binary nya 
+
+![Preview](image/1.png)
+
