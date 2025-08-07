@@ -1,0 +1,10 @@
+akumauflag;RETURN 0
+
+RETURN 0 memungkinkan kita untuk kembali ke lirik paling awal dari lagu ini
+
+elif re.match(r"RETURN [0-9]+", line):
+    lip = int(line.split()[1])
+
+Perintah Ganda dengan ; Program memproses setiap baris dengan memisahnya menggunakan titik koma (;).
+Ini berarti kita bisa memasukkan beberapa perintah dalam satu barisan input.
+

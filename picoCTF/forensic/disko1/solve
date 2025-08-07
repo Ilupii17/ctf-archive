@@ -1,0 +1,1 @@
+└─$ gunzip -c disko-1.dd.gz | strings | grep -o 'picoCTF{.*}'
