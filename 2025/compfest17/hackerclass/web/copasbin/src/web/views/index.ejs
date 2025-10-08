@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/styles.css" text="text/css">
+    <title>copasbin</title>
+</head>
+
+<body>
+    <div class="min-h-screen flex flex-col gap-8 items-center justify-center bg-gray-800 text-white">
+        <div class="flex flex-col gap-2 w-full items-center">
+            <h1 class="text-4xl font-bold">copasbin</h1>
+            <p class="text-xl">copas your things here!</p>
+        </div>
+        <button class="bg-blue-700 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded-lg" id="button"
+            onclick="newCopas()">Create New
+            Copas</button>
+    </div>
+</body>
+
+<script>
+    function newCopas() {
+        fetch("/api/copas", {
+            method: "POST",
+            body: JSON.stringify({data: ""}),
+            headers: {
+                "Content-Type": "application/json",
+            }
+        })
+            .then(response => response.json())
+            .then(fetchedData => {
+                window.location.href = "/copas/" + fetchedData.id;
+            })
+    }
+</script>
+
+</html>

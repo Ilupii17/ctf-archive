@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css" type="text/css">
+    <title>copasbin</title>
+</head>
+
+<body>
+    <div class="min-h-screen flex flex-col justify-center items-center bg-gray-800 text-white">
+        <div class="flex flex-col gap-4" id="container">
+            <h1 class="text-xl font-bold" id="filename"></h1>
+            <div class="bg-gray-600 p-4 rounded-lg w-full" id="data"></div>
+            <textarea class="hidden bg-gray-600 p-4 rounded-lg w-full" id="dataEdit"></textarea>
+            <div id="buttons">
+                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                    id="reportButton">Report</button>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    id="editButton">Edit</button>
+                <button class="hidden bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    id="submitButton" onclick="submitData()">Submit</button>
+            </div>
+        </div>
+    </div>
+    <!-- modal -->
+    <div class="size-full bg-black bg-opacity-50 absolute top-0 left-0 flex justify-center items-center text-white hidden"
+        id="modal">
+        <div class="bg-gray-600 p-4 rounded-lg flex flex-col gap-4" id="modalData">
+            <div id="modalText">
+                <h3 class="text-lg font-bold">Report</h3>
+                <p>Are you sure you want to report this copas to the admins?</p>
+            </div>
+            <div>
+                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                    id="submitReportButton">Yes</button>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    id="cancelReportButton">Cancel</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    const editButton = document.getElementById("editButton");
+    const data = document.getElementById("data");
+    const dataEdit = document.getElementById("dataEdit");
+    const submitButton = document.getElementById("submitButton");
+    const filename = document.getElementById("filename");
+
+    editButton.addEventListener("click", () => {
+        data.classList.toggle("hidden");
+        editButton.classList.toggle("hidden");
+        dataEdit.classList.toggle("hidden");
+        submitButton.classList.toggle("hidden");
+    });
+
+    fetch("/api/copas/" + window.location.pathname.split("/")[2])
+        .then(response => response.json())
+        .then(fetchedData => {
+            console.log(fetchedData);
+            filename.innerHTML = fetchedData.filename;
+            data.innerHTML = fetchedData.data;
+            dataEdit.value = fetchedData.data;
+        })
+
+    function submitData() {
+        const dataVal = document.getElementById("dataEdit").value;
+
+        fetch("/api/copas/" + window.location.pathname.split("/")[2], {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                data: dataVal
+            })
+        })
+            .then(response => {
+                if (response.status === 200) {
+                    return response.json();
+                } else {
+                    dataEdit.value = data.innerHTML;
+                    Promise.reject(response);
+                }
+            })
+            .then(fetchedData => {
+                console.log(fetchedData);
+                data.innerHTML = fetchedData.data;
+                dataEdit.value = fetchedData.data;
+            })
+
+        data.classList.toggle("hidden");
+        editButton.classList.toggle("hidden");
+        dataEdit.classList.toggle("hidden");
+        submitButton.classList.toggle("hidden");
+    }
+
+    document.getElementById("reportButton").addEventListener("click", () => {
+        document.getElementById("modal").classList.toggle("hidden");
+    });
+
+    document.getElementById("submitReportButton").addEventListener("click", () => {
+        fetch("/api/copas/report/" + window.location.pathname.split("/")[2], {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                data: dataEdit.value
+            })
+        })
+
+        document.getElementById("modalText").innerHTML = "Report has been sent to the admins!";
+        document.getElementById("submitReportButton").classList.toggle("hidden");
+    });
+
+    document.getElementById("cancelReportButton").addEventListener("click", () => {
+        document.getElementById("modal").classList.toggle("hidden");
+    });
+</script>
+
+</html>
