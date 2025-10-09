@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NASA Image Viewer</title>
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+    <style>
+        body {
+            padding: 1rem;
+        }
+
+        #results {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 0.5rem;
+        }
+
+        .card {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 0.75rem;
+            padding: 1rem;
+        }
+
+        .card h4 {
+            margin: 0.5rem 0 0;
+            font-size: 1rem;
+        }
+
+        .card p {
+            font-size: 0.875rem;
+            color: #999;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+        <h1>🚀 NASA Image Viewer</h1>
+        <form id="searchForm">
+            <label for="query">Search for NASA images:</label>
+            <input type="text" id="query" name="query" placeholder="e.g. Mars, Apollo, Galaxy" required>
+            <button type="submit">Search</button>
+        </form>
+
+        <section id="results"></section>
+    </main>
+
+    <script>
+        const form = document.getElementById('searchForm');
+        const results = document.getElementById('results');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const q = document.getElementById('query').value.trim();
+            if (!q) return;
+
+            results.innerHTML = '<p>Loading...</p>';
+
+            try {
+                const nasa_url = 'https://images-api.nasa.gov/search?q=' + encodeURIComponent(q);
+                const res = await fetch(`/api?url=${encodeURIComponent(nasa_url)}`);
+                if (!res.ok) throw new Error('Search request failed');
+
+                const data = await res.json();
+                const items = data.collection?.items || [];
+
+                if (items.length === 0) {
+                    results.innerHTML = '<p>No results found.</p>';
+                    return;
+                }
+
+                const top10 = items.slice(0, 10);
+                results.innerHTML = '';
+
+                for (const item of top10) {
+                    const metadata = item.data?.[0] || {};
+                    const title = metadata.title || 'Untitled';
+                    const description = metadata.description || '';
+                    const links = item.links || [];
+                    const imgLink = links.find(l => l.render === 'image');
+
+                    if (imgLink) {
+                        const card = document.createElement('article');
+                        card.className = 'card';
+                        card.innerHTML = `
+              <img src="${imgLink.href}" alt="${title}">
+              <h4>${title}</h4>
+              <p>${description.substring(0, 100)}...</p>
+            `;
+                        results.appendChild(card);
+                    }
+                }
+            } catch (err) {
+                console.error(err);
+                results.innerHTML = '<p>Error loading results.</p>';
+            }
+        });
+    </script>
+</body>
+
+</html>
